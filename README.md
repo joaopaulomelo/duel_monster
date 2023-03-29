@@ -24,8 +24,8 @@ You need to configure the .env file steps
 
 - **[Postman](https://api.postman.com/collections/11708091-2a46b258-afc1-43c5-bbd7-4c46a66df07d?access_key=PMAT-01GWNQ4S25VX4QA6SVA054V5T5)** 
 
--  GET 'api/auth/login'
--  GET 'api/auth/logout'
+-  POST 'api/auth/login'
+-  POST 'api/auth/logout'
 
 -  GET 'api/card/monster'
 -  GET 'api/card/monster/{id}'
