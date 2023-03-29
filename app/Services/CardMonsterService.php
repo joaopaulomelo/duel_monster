@@ -77,7 +77,6 @@ class CardMonsterService
         $cardMonster = $this->show($cardMonster_id);
 
         if ($cardMonster) {
-
             $this->cardMonster->find($cardMonster_id)->delete();
 
             return true;

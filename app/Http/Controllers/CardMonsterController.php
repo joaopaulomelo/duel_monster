@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 class CardMonsterController extends Controller
 {
-
     private $cardMonsterService;
 
     public function __construct(CardMonsterService $cardMonsterService)
