@@ -15,7 +15,7 @@ class CardMonster extends Model
         'def',
         'level',
         'number',
-        'type',
+        'type_id',
         'description',
         'attribute_id',
         'rarity_id',

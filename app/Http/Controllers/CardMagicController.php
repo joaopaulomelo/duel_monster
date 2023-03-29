@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CardMagicRequest;
 use App\Services\CardMagicService;
+use Illuminate\Http\Request;
 
 class CardMagicController extends Controller
 {
@@ -16,17 +17,17 @@ class CardMagicController extends Controller
 
     public function create(CardMagicRequest $request)
     {
-        $cardMagicService = $this->cardMagicService->create($request);
+        $cardMagic = $this->cardMagicService->create($request);
 
-        return response()->json($cardMagicService, 201);
+        return response()->json($cardMagic, 201);
     }
 
-    public function update($cardMagic_id, CardMagicRequest $request)
+    public function update($cardMagic_id, Request $request)
     {
-        $cardMagicService = $this->cardMagicService->update($cardMagic_id, $request);
+        $cardMagic = $this->cardMagicService->update($cardMagic_id, $request);
 
-        if ($cardMagicService) {
-            return response()->json($cardMagicService, 200);
+        if ($cardMagic) {
+            return response()->json($cardMagic, 200);
         } else {
             return response()->json(['error' => 'Not Found'], 404);
         }
@@ -34,10 +35,10 @@ class CardMagicController extends Controller
 
     public function show($cardMagic_id)
     {
-        $cardMagicService = $this->cardMagicService->show($cardMagic_id);
+        $cardMagic = $this->cardMagicService->show($cardMagic_id);
 
-        if ($cardMagicService) {
-            return response()->json($cardMagicService, 200);
+        if ($cardMagic) {
+            return response()->json($cardMagic, 200);
         } else {
             return response()->json(['error' => 'Not Found'], 404);
         }
@@ -45,9 +46,9 @@ class CardMagicController extends Controller
 
     public function destroy($cardMagic_id)
     {
-        $cardMagicService = $this->cardMagicService->destroy($cardMagic_id);
+        $cardMagic = $this->cardMagicService->destroy($cardMagic_id);
 
-        if ($cardMagicService) {
+        if ($cardMagic) {
             return response()->json([], 204);
         } else {
             return response()->json(['error' => 'Not Found'], 404);
@@ -56,8 +57,8 @@ class CardMagicController extends Controller
 
     public function list()
     {
-        $cardMagicService = $this->cardMagicService->list();
+        $cardMagic = $this->cardMagicService->list();
 
-        return response()->json($cardMagicService, 200);
+        return response()->json($cardMagic, 200);
     }
 }
