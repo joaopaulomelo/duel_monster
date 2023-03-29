@@ -15,7 +15,6 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
-
         $credentials = $request->only(['email', 'password']);
 
         try {
@@ -24,7 +23,6 @@ class AuthController extends Controller
                     'error' => 'Invalid Credentials'
                 ], 401);
             }
-
         } catch (JWTException $e) {
             return response()->json([
                 'error' => 'Could not create token'

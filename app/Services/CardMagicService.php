@@ -68,7 +68,6 @@ class CardMagicService
         $cardMonster = $this->show($card_id);
 
         if ($cardMonster) {
-
             $this->cardMagic->find($card_id)->delete();
 
             return true;

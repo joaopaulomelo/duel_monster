@@ -14,8 +14,8 @@ class CardTrapService
         $this->cardTrap = $cardTrap;
     }
 
-    public function create($request) {
-
+    public function create($request)
+    {
         $file = auth()->id() . '_' . time() . '.'. $request->image->extension();
         $mime = $request->image->getClientMimeType();
         $size = $request->image->getSize();
@@ -40,7 +40,8 @@ class CardTrapService
         return $cardTrap;
     }
 
-    public function update($card_id, $request) {
+    public function update($card_id, $request)
+    {
         $cardTrap = $this->cardTrap->find($card_id);
 
         if ($cardTrap) {
@@ -57,15 +58,16 @@ class CardTrapService
         }
     }
 
-    public function show($card_id) {
+    public function show($card_id)
+    {
         return $this->cardTrap->find($card_id);
     }
 
-    public function destroy($card_id) {
+    public function destroy($card_id)
+    {
         $cardTrap = $this->show($card_id);
 
         if ($cardTrap) {
-
             $this->cardTrap->find($card_id)->delete();
 
             return true;
