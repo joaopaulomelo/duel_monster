@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CardTrapRequest;
 use App\Services\CardTrapService;
+use Illuminate\Http\Request;
 
 class CardTrapController extends Controller
 {
@@ -21,7 +22,7 @@ class CardTrapController extends Controller
         return response()->json($cardTrap, 201);
     }
 
-    public function update($cardTrap_id, CardTrapRequest $request)
+    public function update($cardTrap_id, Request $request)
     {
         $cardTrap = $this->cardTrapService->update($cardTrap_id, $request);
 

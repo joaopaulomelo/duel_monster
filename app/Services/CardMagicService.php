@@ -16,10 +16,10 @@ class CardMagicService
 
     public function create($request)
     {
-        $file = auth()->id() . '_' . time() . '.'. $request->file->extension();
-        $mime = $request->file->getClientMimeType();
-        $size = $request->file->getSize();
-        $path = $request->file('file')->store('file/magic');
+        $file = auth()->id() . '_' . time() . '.'. $request->image->extension();
+        $mime = $request->image->getClientMimeType();
+        $size = $request->image->getSize();
+        $path = $request->file('image')->store('file/magic');
 
         $file = File::create([
                 'name' => $file,
@@ -31,9 +31,9 @@ class CardMagicService
         $cardMagic = CardMagic::create([
                     'description' => $request->description,
                     'name' => $request->name,
-                    'number'=> $request->atk,
-                    'property_id' => $request->def,
-                    'rarity_id' => $request->level,
+                    'number'=> $request->number,
+                    'property_id' => $request->property_id,
+                    'rarity_id' => $request->rarity_id,
                     'image_id'=>$file->id
                     ]);
 
@@ -46,6 +46,7 @@ class CardMagicService
 
         if ($cardMagic) {
             $cardMagic->description = $request->description;
+            $cardMagic->name = $request->name;
             $cardMagic->number = $request->number;
             $cardMagic->property_id = $request->property_id;
             $cardMagic->rarity_id = $request->rarity_id;

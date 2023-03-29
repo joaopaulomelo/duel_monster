@@ -16,10 +16,10 @@ class CardTrapService
 
     public function create($request) {
 
-        $file = auth()->id() . '_' . time() . '.'. $request->file->extension();
-        $mime = $request->file->getClientMimeType();
-        $size = $request->file->getSize();
-        $path = $request->file('file')->store('file/trap');
+        $file = auth()->id() . '_' . time() . '.'. $request->image->extension();
+        $mime = $request->image->getClientMimeType();
+        $size = $request->image->getSize();
+        $path = $request->file('image')->store('file/trap');
 
         $file = File::create([
             'name' => $file,
@@ -31,9 +31,9 @@ class CardTrapService
         $cardTrap = CardTrap::create([
             'description' => $request->description,
             'name' => $request->name,
-            'number'=> $request->atk,
-            'property_id' => $request->def,
-            'rarity_id' => $request->level,
+            'number'=> $request->number,
+            'property_id' => $request->property_id,
+            'rarity_id' => $request->rarity_id,
             'image_id'=>$file->id
         ]);
 
@@ -45,6 +45,7 @@ class CardTrapService
 
         if ($cardTrap) {
             $cardTrap->description = $request->description;
+            $cardTrap->name = $request->name;
             $cardTrap->number = $request->number;
             $cardTrap->property_id = $request->property_id;
             $cardTrap->rarity_id = $request->rarity_id;

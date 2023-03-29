@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CardMonsterRequest;
 use App\Services\CardMonsterService;
+use Illuminate\Http\Request;
 
 class CardMonsterController extends Controller
 {
@@ -22,7 +23,7 @@ class CardMonsterController extends Controller
         return response()->json($cardMonster, 201);
     }
 
-    public function update($cardMonster_id, CardMonsterRequest $request)
+    public function update($cardMonster_id, Request $request)
     {
         $cardMonster = $this->cardMonsterService->update($cardMonster_id, $request);
 
@@ -40,7 +41,7 @@ class CardMonsterController extends Controller
         if ($cardMonster) {
             return response()->json($cardMonster, 200);
         } else {
-            return response()->json(['error' => 'Not Found'], 404);
+            return response()->json(['error' => 'Monster Card Not Found'], 404);
         }
     }
 
@@ -49,7 +50,7 @@ class CardMonsterController extends Controller
         $cardMonster = $this->cardMonsterService->destroy($cardMonster_id);
 
         if ($cardMonster) {
-            return response()->json([], 204);
+            return response()->json(['message' => 'successfully deleted letter'], 204);
         } else {
             return response()->json(['error' => 'Not Found'], 404);
         }

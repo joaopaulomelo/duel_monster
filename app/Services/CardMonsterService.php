@@ -16,10 +16,10 @@ class CardMonsterService
 
     public function create($request)
     {
-        $file = auth()->id() . '_' . time() . '.'. $request->file->extension();
-        $mime = $request->file->getClientMimeType();
-        $size = $request->file->getSize();
-        $path = $request->file('file')->store('file/monster');
+        $file = auth()->id() . '_' . time() . '.'. $request->image->extension();
+        $mime = $request->image->getClientMimeType();
+        $size = $request->image->getSize();
+        $path = $request->file('image')->store('file/monster');
 
         $file = File::create([
                 'name' => $file,
@@ -34,7 +34,7 @@ class CardMonsterService
                     'def' => $request->def,
                     'level' => $request->level,
                     'number' => $request->number,
-                    'type'=>$request->type,
+                    'type_id'=>$request->type,
                     'description'=>$request->description,
                     'attribute_id'=>$request->attribute_id,
                     'rarity_id'=>$request->rarity_id,
@@ -46,15 +46,16 @@ class CardMonsterService
 
     public function update($person_id, $request)
     {
+        // dd($request);
         $cardMonster = $this->cardMonster->find($person_id);
-
+        // dd($cardMonster);
         if ($cardMonster) {
             $cardMonster->name = $request->name;
             $cardMonster->atk = $request->atk;
             $cardMonster->def = $request->def;
             $cardMonster->level = $request->level;
             $cardMonster->number = $request->number;
-            $cardMonster->type = $request->type;
+            $cardMonster->type_id = $request->type;
             $cardMonster->description = $request->description;
             $cardMonster->attribute_id = $request->attribute_id;
             $cardMonster->rarity_id = $request->rarity_id;

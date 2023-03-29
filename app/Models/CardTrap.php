@@ -15,6 +15,7 @@ class CardTrap extends Model
         'name',
         'property_id',
         'rarity_id',
+        'image_id',
     ];
 
     protected $hidden = [
